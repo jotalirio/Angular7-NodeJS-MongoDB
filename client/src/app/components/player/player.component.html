@@ -1,0 +1,21 @@
+<div class="album-image">
+  <span *ngIf="song.album">
+    <img id="play-image-album" src="{{ url + 'get-image-album/' + song.album.image}}">
+  </span>
+  <span *ngIf="!song.album">
+    <img id="play-image-album" src="assets/images/default.png">
+  </span>
+</div>
+<div class="audio-file">
+  <p>Playing</p>
+  <span *ngIf="song" id="play-song-title">
+    {{song.name}}
+  </span>
+  <span *ngIf="song.album.artist" id="play-song-artist">
+      | {{song.album.artist.name}}
+  </span>
+  <audio controls id="player">
+      <source id="mp3-source" src="{{ url + 'get-file-song/' + song.file }}" type="audio/mpeg" />
+      Your web browser does not support audio playback.
+  </audio>
+</div>

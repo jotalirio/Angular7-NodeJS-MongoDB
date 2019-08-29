@@ -1,0 +1,44 @@
+<div *ngIf="identity && identity.role == 'ROLE_ADMIN'" class="col-md-6">
+  <h1>{{title}}</h1>
+  <div *ngIf="saveSuccessMessage">
+      <div class="alert alert-success" role="alert">
+          <strong>GREAT!!!</strong> {{saveSuccessMessage}}
+      </div>
+  </div>
+  <div *ngIf="saveErrorMessage">
+      <div class="alert alert-danger" role="alert">
+          <strong>ERROR!!!</strong> {{saveErrorMessage}}
+      </div>
+  </div>
+  <form #artistForm="ngForm" (ngSubmit)="onSubmitArtist()" ngNativeValidate>
+      <p>
+        <label class="label-bold">Name:</label>
+        <input type="text" #name="ngModel" name="name" [(ngModel)]="artist.name" class="form-control" required />
+        <span *ngIf="!name.valid && name.touched" class="message-input-required">
+          The field name is required.
+        </span>
+      </p>
+      <p>
+        <label class="label-bold">Description:</label>
+        <textarea #description="ngModel" name="description" [(ngModel)]="artist.description" class="form-control" rows="4"  required></textarea>
+        <span *ngIf="!description.valid && description.touched" class="message-input-required">
+          The field description is required.
+        </span>
+      </p>
+      <div *ngIf="isEdit">
+        <div *ngIf="artist.image && artist.image != 'null'" class="artist-image-for-edit">
+            <img src="{{url + 'get-image-artist/' + artist.image}}"/>
+        </div>
+        <p>
+          <label class="label-bold">Choose artist's picture:</label>
+          <br>
+          <input type="file" (change)="fileChangeEvent($event)" palceholder="Choose image..." />
+        </p>
+      </div>
+      <input type="submit" value="Save" class="btn btn-success" [disabled]="!artistForm.form.valid" />
+  </form>
+</div>
+<div *ngIf="!identity || identity.role != 'ROLE_ADMIN'" class="col-md-6">
+  <h1>Error</h1>
+  <p>You are not authorised to access to this section.</p>
+</div>

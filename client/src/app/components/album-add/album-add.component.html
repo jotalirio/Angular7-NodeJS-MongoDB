@@ -1,0 +1,51 @@
+<div *ngIf="identity && identity.role == 'ROLE_ADMIN'" class="col-md-6">
+  <h1>{{sectionTitle}}</h1>
+  <div *ngIf="saveSuccessMessage">
+      <div class="alert alert-success" role="alert">
+          <strong>GREAT!!!</strong> {{saveSuccessMessage}}
+      </div>
+  </div>
+  <div *ngIf="saveErrorMessage">
+      <div class="alert alert-danger" role="alert">
+          <strong>ERROR!!!</strong> {{saveErrorMessage}}
+      </div>
+  </div>
+  <form #albumForm="ngForm" (ngSubmit)="onSubmitAlbum()" ngNativeValidate>
+      <p>
+        <label class="label-bold">Title:</label>
+        <input type="text" #title="ngModel" name="title" [(ngModel)]="album.title" class="form-control" required />
+        <span *ngIf="!title.valid && title.touched" class="message-input-required">
+          The field title is required.
+        </span>
+      </p>
+      <p>
+        <label class="label-bold">Description:</label>
+        <textarea #description="ngModel" name="description" [(ngModel)]="album.description" class="form-control" rows="4"  required></textarea>
+        <span *ngIf="!description.valid && description.touched" class="message-input-required">
+          The field description is required.
+        </span>
+      </p>
+      <p>
+        <label class="label-bold">Year:</label>
+        <input type="text" #year="ngModel" name="year" [(ngModel)]="album.year" class="form-control" required />
+        <span *ngIf="!year.valid && year.touched" class="message-input-required">
+          The field year is required.
+        </span>
+      </p>      
+      <div *ngIf="isEdit">
+        <div *ngIf="album.image && album.image != 'null'" class="album-image-for-edit">
+            <img src="{{url + 'get-image-album/' + album.image}}"/>
+        </div>
+        <p>
+          <label class="label-bold">Choose album's picture:</label>
+          <br>
+          <input type="file" (change)="fileChangeEvent($event)" palceholder="Choose image..." />
+        </p>
+      </div>
+      <input type="submit" value="Save" class="btn btn-success" [disabled]="!albumForm.form.valid" />
+  </form>
+</div>
+<div *ngIf="!identity || identity.role != 'ROLE_ADMIN'" class="col-md-6">
+  <h1>Error</h1>
+  <p>You are not authorised to access to this section.</p>
+</div>

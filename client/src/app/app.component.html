@@ -1,0 +1,123 @@
+<div class="container">
+    <!-- User logged in-->
+    <div *ngIf="identity" class="row full-height">
+        <div class="navigation col-md-1">
+          <h1 class="head-title">
+            <a id="brand" [routerLink]="['/']">
+              <span class="glyphicon glyphicon-music" aria-hidden="true"></span>
+                {{title}}
+            </a>
+          </h1>
+          <nav id="navigation">
+            <a href="#">
+              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                Search
+            </a>
+            <a id="artists-section" [routerLink]="['/artists/1']" [routerLinkActive]="['actived-section']">
+              <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                Artists
+            </a>
+            <a href="#">
+              <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+                Albums
+            </a>
+          </nav>
+          <nav id="user-logged">
+            <div class="user-image">
+                <img id="image-logged" src="{{url + 'get-image-user/' + identity.image}}"/>
+            </div>
+            <span id="identity-name">
+              {{identity.name}}
+            </span>
+            <a [routerLink]="['/my-profile']" [routerLinkActive]="['actived-section']">
+              <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                My Profile
+            </a>
+            <a href="" (click)="logOut()">
+              <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>
+                Exit
+            </a>
+            <!-- <span class="btn btn-warning" (click)="logOut()">
+              Exit
+            </span> -->
+          </nav>
+        </div>
+        <!-- This div will be shown when identity exists (user is logged in). For that, we use [class.hidden] -->
+        <div [class.hidden]="!identity" class="central col-md-11">
+            <router-outlet></router-outlet>
+            <div class="clearfix"></div>
+            <player *ngIf="identity" class="player"></player>
+        </div>
+    </div>
+    <!-- User not logged in-->
+    <div *ngIf="!identity" class="row full-height">
+      <div class="col-md-6">
+        <h1>Log in</h1>
+        <div *ngIf="loginErrorMessage">
+          <div class="alert alert-danger" role="alert">
+              <strong>ERROR!!!</strong> {{loginErrorMessage}}
+            </div>
+        </div>
+        <form #loginForm="ngForm" (ngSubmit)="onSubmitLogin()" class="col-md-6" ngNativeValidate>
+          <p>
+            <label class="label-bold">Email:</label>
+            <input type="email" #email="ngModel" name="email" [(ngModel)]="userLogin.email" class="form-control" required />
+            <span *ngIf="!email.valid && email.touched">
+              The field email is required.
+            </span>
+          </p>
+          <p>
+            <label class="label-bold">Password:</label>
+            <input type="password" #password="ngModel" name="password" [(ngModel)]="userLogin.password" class="form-control" required />
+          </p>
+          <input type="submit" value="Enter" class="btn btn-primary" />
+        </form>
+      </div>
+      <div class="col-md-6">
+        <h1>Register</h1>
+        <div *ngIf="registerSuccessMessage">
+          <div class="alert alert-success" role="alert">
+              <strong>CONGRATULATIONS!!!</strong> {{registerSuccessMessage}}
+            </div>
+        </div>
+        <div *ngIf="registerErrorMessage">
+          <div class="alert alert-danger" role="alert">
+              <strong>ERROR!!!</strong> {{registerErrorMessage}}
+            </div>
+        </div>
+        <form #registerForm="ngForm" (ngSubmit)="onSubmitRegister()" class="col-md-6" ngNativeValidate>
+            <p>
+              <label class="label-bold">Name:</label>
+              <input type="text" #name="ngModel" name="name" [(ngModel)]="userRegister.name" class="form-control" required />
+              <span *ngIf="!name.valid && name.touched" class="message-input-required">
+                The field name is required.
+              </span>
+            </p>
+            <p>
+              <label class="label-bold">Surname:</label>
+              <input type="text" #surname="ngModel" name="surname" [(ngModel)]="userRegister.surname" class="form-control" required />
+              <span *ngIf="!surname.valid && surname.touched">
+                The field surname is required.
+              </span>
+            </p>
+            <p>
+              <label class="label-bold">Email:</label>
+              <input type="email" #email="ngModel" name="email" [(ngModel)]="userRegister.email" class="form-control" required />
+              <span *ngIf="!email.valid && email.touched">
+                The field email is required.
+              </span>
+            </p>
+            <p>
+              <label class="label-bold">Password:</label>
+              <input type="password" #password="ngModel" name="password" [(ngModel)]="userRegister.password" class="form-control" required />
+              <span *ngIf="!password.valid && password.touched">
+                The field password is required.
+              </span>
+            </p>    
+            <input type="submit" value="Register" class="btn btn-primary" />
+          </form>  
+      </div>
+    </div>
+</div>
+  
+

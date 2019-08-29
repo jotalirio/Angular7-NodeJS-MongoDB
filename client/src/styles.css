@@ -1,0 +1,333 @@
+/* You can add global styles to this file, and also import other style files */
+html, body {
+    margin: 0px;
+    height: 100%;
+    background-color: #EEE;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 100%;
+        height: 100%;
+    }
+}
+
+.full-height {
+    height: 100%;
+    /* overflow-y: scroll; */
+}
+
+.label-bold {
+    font-weight: bold;
+}
+
+.jumbotron {
+    background-color: #EEE;
+}
+
+.actived-section {
+    border-bottom: 4px solid #84BD00;
+    padding-bottom: 4px;
+}
+
+.central {
+    height: 100%;
+    overflow-y: scroll;
+}
+
+.sure-artist {
+    color: white;
+    margin-top: -43px;
+    position: absolute;
+    width: 100%;
+    background: #222326;
+    /* height: 40px; */
+}
+
+.sure-album {
+    color: white;
+    margin-top: -53px;
+    position: absolute;
+    width: 100%;
+    background: #222326;
+    /* height: 40px; */
+}
+
+.sure-artist a,
+.sure-album a {
+    margin-right: 2px;
+    margin-left: 2px;
+}
+
+.head-title {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    display: block;
+}
+
+.navigation {
+    text-align: center;
+    color: white;
+    background: #1C1C1F;
+    /*height: 100%;*/
+}
+
+.navigation a {
+    color: #DDD;
+    background: #1C1C1F;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: block;
+    text-decoration: none;
+}
+
+.navigation a:hover {
+    color: white;
+}
+
+#user-logged {
+    background: #1C1C1F;
+    position: absolute;
+    bottom: 0px;
+    right: 15px;
+    left: 15px;
+    border-top: 1px solid #444;
+    width: 75%;
+}
+
+#user-logged .user-image {
+    background-color: #EEE;
+    border-radius: 100px;
+    height: 57px;
+    width: 57px;
+    margin: 0 auto;
+    margin-top: 15px;
+    overflow: hidden;
+}
+
+#user-logged .user-image img {
+    width: 57px;
+}
+
+.message-input-required {
+    color:  #dc3545;
+    font-size: 80%;
+}
+
+/* input:required {
+    border-color: #dc3545;
+    border-width: 1px;
+} */
+
+/* input:invalid {
+    border-color: #dc3545;
+    border-width: 1px;
+} */
+
+.artist-image-for-edit img,
+.album-image-for-edit img  {
+    width: 150px;;
+}
+
+.artists-list{
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+    margin-top: 30px;
+    list-style: none;
+    min-height: 400px;
+}
+
+.albums-list {
+    text-align: center;
+    margin-bottom: 180px;
+    margin-top: 20px;
+    list-style: none;
+   /*  min-height: 400px; */
+   height: auto;
+}
+
+.artists-list li,
+.albums-list li {
+    display: inline-block;
+}
+
+.artist-item {
+    width: 17%;
+    height: 325px;
+    margin: 0px;
+    margin-left: 40px;
+    margin-right: 40px !important;
+    /* margin-top: 20px; */
+    padding: 0px;
+    border: 1px solid #444;
+}
+
+.album-item {
+    width: 25%;
+    height: 356px;
+    margin: 0px;
+    margin-left: 40px;
+    margin-right: 40px !important;
+    margin-bottom: 20px;
+    /* margin-top: 20px; */
+    padding: 0px;
+    border: 1px solid #444;
+    background: #222326;
+}
+
+.artist-item .artist-image {
+    width: 100%;
+    height: 245px;
+    overflow: hidden;
+}
+
+.album-item .album-image {
+    width: 100%;
+    height: 245px;
+    overflow: hidden;
+    background: black;
+}
+
+.artist-item .artist-image img,
+.album-item .album-image img  {
+    min-width: 100%;
+    height: 100%;
+}
+
+.artist-item .artist-name {
+    color: white;
+    padding: 10px;
+    background: #222326;
+}
+
+.album-item .album-name {
+    color: white;
+    padding: 10px;
+    padding-top: 15px;
+    background: #222326;
+    height: 110px;
+}
+
+.artist-item .artist-name a,
+.album-item .album-name a {
+    color: white;
+}
+
+.buttons a {
+    margin: 2px 2px 2px 2px;
+}
+
+.row-paginator {
+    margin-top: 30px;
+}
+
+.row-paginator ul {
+    margin: 0 auto;
+}
+
+#artist-head-card,
+#album-head-card {
+    margin-top: 30px;
+}
+
+#artist-head-card .detail-artist-image,
+#album-head-card .detail-album-image {
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    float: left;
+    margin-right: 30px;
+}
+
+#artist-head-card .detail-artist-image img,
+#album-head-card .detail-album-image img {
+    width: 250px;
+}
+
+#artist-head-card .data p,
+#album-head-card .data p {
+    text-align: justify;
+}
+
+#songs-list {
+    margin: 0px;
+    margin-top: 30px;
+    padding: 0px;
+    min-height: 500px;
+    padding-bottom: 200px;
+}
+
+.song-item {
+    list-style: none;
+    border-bottom: 1px solid #CCC;
+    padding-top: 3px;
+}
+
+.song-item .song-title {
+    padding: 15px;
+}
+
+.song-item .song-title .play {
+    margin-right: 10px;
+}
+
+.song-item .song-buttons {
+    float: right;
+}
+
+.song-item .song-buttons a {
+    margin-right: 2px;
+    margin-left: 2px;
+    color: white !important;
+}
+
+.song-item .sure-song {
+    float: right;
+    margin-right: -107px;
+    background: #EEE;
+}
+
+.song-item .sure-song a {
+    margin-right: 2px;
+    margin-left: 2px;
+    color: white !important;
+}
+
+.player {
+    background: #1C1C1F;
+    position: fixed;
+    width: 90.6%;
+    bottom: 0;
+    padding: 20px;
+    margin-left: -15px;
+    border-left: 1px solid #444;
+    color: gray;
+}
+
+.player .album-image {
+    float: left;
+    width: 138px;
+    height: 120px;
+    overflow: hidden;
+}
+
+.player .album-image img {
+    height: 100%;
+}
+
+.player .audio-file {
+    width: 85%;
+    height: 40px;
+    /* margin-top: 5px; */
+    margin-left: 10px;
+    float: left;
+}
+
+.player audio {
+    width: 100%;
+    height: 40px;
+    margin-top: 15px;
+}

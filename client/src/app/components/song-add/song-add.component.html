@@ -1,0 +1,54 @@
+<div *ngIf="identity && identity.role == 'ROLE_ADMIN'" class="col-md-6">
+  <h1>{{sectionTitle}}</h1>
+  <div *ngIf="saveSuccessMessage">
+      <div class="alert alert-success" role="alert">
+          <strong>GREAT!!!</strong> {{saveSuccessMessage}}
+      </div>
+  </div>
+  <div *ngIf="saveErrorMessage">
+      <div class="alert alert-danger" role="alert">
+          <strong>ERROR!!!</strong> {{saveErrorMessage}}
+      </div>
+  </div>
+  <form #songForm="ngForm" (ngSubmit)="onSubmitSong()" ngNativeValidate>
+      <p>
+        <label class="label-bold">Number:</label>
+        <input type="text" #number="ngModel" name="number" [(ngModel)]="song.number" class="form-control" required />
+        <span *ngIf="!number.valid && number.touched" class="message-input-required">
+          The field number is required.
+        </span>
+      </p>
+      <p>
+        <label class="label-bold">Name:</label>
+        <input type="text" #name="ngModel" name="name" [(ngModel)]="song.name" class="form-control" required />
+        <span *ngIf="!name.valid && name.touched" class="message-input-required">
+          The field name is required.
+        </span>
+      </p>
+      <p>
+        <label class="label-bold">Duration:</label>
+        <input type="text" #duration="ngModel" name="duration" [(ngModel)]="song.duration" class="form-control" required />
+        <span *ngIf="!duration.valid && duration.touched" class="message-input-required">
+          The field duration is required.
+        </span>
+      </p>
+      <div *ngIf="isEdit">
+        <div *ngIf="song.file && song.file != 'null'" class="song-file-for-edit">
+            <audio controls>
+              <source src="{{ url + 'get-file-song/' + song.file }}" type="audio/mpeg" />
+                Your web browser does not support audio playback.
+            </audio>
+        </div>
+        <p>
+          <label class="label-bold">Choose song:</label>
+          <br>
+          <input type="file" (change)="fileChangeEvent($event)" palceholder="Choose file..." />
+        </p>
+      </div>
+      <input type="submit" value="Save" class="btn btn-success" [disabled]="!songForm.form.valid" />
+  </form>
+</div>
+<div *ngIf="!identity || identity.role != 'ROLE_ADMIN'" class="col-md-6">
+  <h1>Error</h1>
+  <p>You are not authorised to access to this section.</p>
+</div>
